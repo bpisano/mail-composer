@@ -18,6 +18,9 @@ let package = Package(
         )
     ],
     targets: [
-        .target(name: "MailComposer")
+        .target(
+            name: "MailComposer",
+            resources: [.copy("Resources")]
+        )
     ]
 )

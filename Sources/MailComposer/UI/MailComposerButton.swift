@@ -5,6 +5,7 @@
 //  Created by Benjamin Pisano on 20/08/2024.
 //
 
+#if canImport(MessageUI)
 import SwiftUI
 import MessageUI
 
@@ -72,3 +73,4 @@ public extension MailComposerButton where Content == Label<Text, Image> {
         self.displayedMail = mail
     }
 }
+#endif
