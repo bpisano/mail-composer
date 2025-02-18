@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Mail {
+public struct Mail: Equatable, Hashable, Codable, Sendable {
     public var subject: String = ""
     public var to: [String]?
 
