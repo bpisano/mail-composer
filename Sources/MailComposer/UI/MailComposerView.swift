@@ -11,7 +11,7 @@ import MessageUI
 
 struct MailComposerView: UIViewControllerRepresentable {
     let mail: Mail
-    var result: (MFMailComposeResult) -> Void
+    let result: @MainActor (MFMailComposeResult) -> Void
 
     @Environment(\.presentationMode) private var presentationMode
 
@@ -43,8 +43,10 @@ extension MailComposerView {
         }
 
         func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-            parent.result(result)
-            parent.presentationMode.wrappedValue.dismiss()
+            Task { @MainActor [parent] in
+                parent.result(result)
+                parent.presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }
